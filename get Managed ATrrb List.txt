@@ -1,0 +1,23 @@
+import sailpoint.object.*;
+import sailpoint.api.*;
+import java.util.*;
+
+System.out.println("Managed Attribute");
+
+QueryOptions options=new QueryOptions();
+Filter f=Filter.eq("application.name","Active Directory Application");
+options.add(f);
+
+List managedAttributes=context.getObjects(ManagedAttribute.class,options);
+System.out.println("Managed Attribute List:" + managedAttributes);
+
+List groups= new ArrayList();
+for (ManagedAttribute mobj:managedAttributes){
+
+String manattrb=mobj.getValue();
+System.out.println("Managed Attribute Values:"+ manattrb);
+groups.add(manattrb);
+
+}
+
+return groups;

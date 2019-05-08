@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule created="1553878329857" id="4028b28169ca3ab40169ca5daa01000a" language="beanshell" modified="1553881912573" name="TestRule6" type="SAMLCorrelation">
+  <Description>Test rule to get all entitlements from one application </Description>
+  <Source>
+  import sailpoint.object.*;
+  import org.apache.log4j.Logger;
+  Filter f1 = Filter.eq("application.name","test-onboarding1");
+
+   QueryOptions qo = new QueryOptions();
+
+   qo.addFilter(f1);
+
+   List managedAttributes = context.getObjects(ManagedAttribute.class, qo); 
+  
+   List list = new ArrayList();
+   Map map = new HashMap();
+  int i = 1;
+
+  
+   for (ManagedAttribute ent : managedAttributes){
+  
+   String attribute = ent.getValue();
+    String attr = ent.getAttribute();
+    
+    map.put(Integer.toString(i)+" "+attr,attribute);
+     i++;
+   }
+  
+  return map;
+    
+  </Source>
+</Rule>

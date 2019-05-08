@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule created="1556119393535" id="4028b8816a32de71016a4ff194fe0306" language="beanshell" modified="1556122049253" name="GetLinks_of_an_identity">
+  <Description>Test rule to get all identities and return positioncode or SAMaccount using link object </Description>
+  <Source>
+   import sailpoint.object.*;
+   import sailpoint.api.*;
+   import java.util.List;
+   import java.util.ArrayList;
+   import java.util.Map;
+   import java.util.HashMap;
+  
+ 
+
+  List list = new ArrayList(); 
+  
+  		List l1 = new ArrayList();
+ 
+  	
+    List l2 = new ArrayList();
+  
+  
+  Map map = new HashMap();
+  List ide = context.getObjects(Identity.class);
+   for (Identity allide : ide){
+     
+    	
+      Identity iden = context.getObjectByName(Identity.class,allide.getName());
+	
+  		String username=allide.getName();
+  
+  
+  l1=iden.getLinks();
+  for(Link link : l1){
+ 	 Appname = link.getApplicationName();
+
+  	l2.add(Appname); 
+
+  }
+  	
+     map.put(username,l2);
+   }
+  
+  
+  return map;
+  
+ </Source>
+</Rule>

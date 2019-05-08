@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule created="1556044003032" id="4028b8816a32de71016a4b7336d8021d" language="beanshell" modified="1556044562340" name="Change Entitlement Owner">
+  <Description>
+    This rule changes the entitlement owner from the catalog
+  </Description>
+  <Source>
+       
+        import sailpoint.object.*;
+      
+
+        List managedAttributes = context.getObjects(ManagedAttribute.class); 
+  
+   			List list = new ArrayList();
+   			Map map = new HashMap();
+  			int i = 1;
+
+  
+   			for (ManagedAttribute ent : managedAttributes){
+  			
+          if (!null==ent.getOwner())
+        String Name=ent.getName();  
+   			String owner1 = ent.getOwner().getName();
+    
+   		  map.put(Name,owner1);
+          end
+     		i++;
+   }
+  
+  return map;
+    
+
+       
+</Source>
+</Rule>
