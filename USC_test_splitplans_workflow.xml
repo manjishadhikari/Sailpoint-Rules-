@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Workflow PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Workflow explicitTransitions="true" name="USC test splitplans workflow">
+  <Variable name="idenname"/>
+  <Step icon="Start" name="Start" posX="292" posY="117">
+    <Transition to="Generic Step"/>
+  </Step>
+  <Step icon="Default" name="Generic Step" posX="431" posY="125">
+    <Script>
+      <Source><![CDATA[	
+   import org.apache.log4j.Logger;
+   Logger custLog = Logger.getLogger("USCcustomLogger2");
+
+          custLog.info("This is a USC custom logger2");
+custLog.info("The identity is:"+idenname);
+  
+if (idenname.equals("Iden2")){
+  custLog.info("This fails");
+Iden3.geterror();
+}]]></Source>
+    </Script>
+    <Transition to="Stop"/>
+  </Step>
+  <Step icon="Stop" name="Stop" posX="579" posY="128"/>
+</Workflow>

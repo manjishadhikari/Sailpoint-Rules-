@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Workflow PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Workflow explicitTransitions="true" name="USC Splitplans master workflow">
+  <Variable name="items"/>
+  <Step icon="Default" name="Generic Step" posX="407" posY="119" resultVariable="items">
+    <Script>
+      <Source><![CDATA[import sailpoint.object.*;
+
+	   import org.apache.log4j.Logger;
+           Logger custLog = Logger.getLogger("USCcustomLogger");
+
+          custLog.info("Splitplans master workflow is running..");
+
+List items=new ArrayList();
+items.add("Iden1");
+items.add("Iden2");
+items.add("Iden3");
+
+return items;]]></Source>
+    </Script>
+    <Transition to="Generic Step (1)"/>
+  </Step>
+  <Step icon="Start" name="Start" posX="275" posY="110">
+    <Transition to="Generic Step"/>
+  </Step>
+  <Step icon="Stop" name="Stop" posX="656" posY="129"/>
+  <Step icon="Default" name="Generic Step (1)" posX="528" posY="128">
+    <Arg name="idenname"/>
+    <Replicator arg="idenname" items="items"/>
+    <WorkflowRef>
+      <Reference class="sailpoint.object.Workflow" name="USC test splitplans workflow"/>
+    </WorkflowRef>
+    <Transition to="Stop"/>
+  </Step>
+</Workflow>
